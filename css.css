@@ -1,0 +1,32 @@
+.header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: pink;
+    opacity: 1;
+    z-index: 9999;
+}
+
+
+.footer{
+    width: 100vw;
+    height: 240px;
+    background-color: pink;
+}
+
+
+    #table-container {
+        position: relative;
+    }
+
+        #scroll-table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+    }
+
+        /* #table-container {
+        max-height: 1200px; 
+    }*/
