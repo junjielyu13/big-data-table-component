@@ -30,3 +30,31 @@
         /* #table-container {
         max-height: 1200px; 
     }*/
+
+
+table.statisticsTest {
+    border-collapse: separate;
+}
+table.statisticsTest, thead, tfoot, tr, th, td {
+    width:auto;
+
+}
+table.statisticsTest th {
+    /* z-index: 1; */
+    background-color: white;
+    border-bottom: 2px solid #dee2e5;
+    white-space: nowrap;
+}
+
+#table-container {
+    position: relative;
+    user-select: none;
+    overflow-x:auto;
+}
+
+#scroll-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 1;
+}
