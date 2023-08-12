@@ -58,3 +58,33 @@ table.statisticsTest th {
     background-color: #f9f9f9;
     z-index: 1;
 }
+
+
+.user-nonselect{
+    user-select:none;
+}
+
+.scroll-table-container {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+table.scroll-table {
+    border-collapse: separate;
+}
+table.scroll-table, thead, tfoot, tr, th, td {
+    width:auto;
+
+}
+table.scroll-table th {
+    background-color: white;
+    border-bottom: 2px solid #dee2e5;
+    white-space: nowrap;
+}
+table.scroll-table, thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 1;
+}

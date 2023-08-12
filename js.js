@@ -1,8 +1,9 @@
-window.addEventListener("DOMContentLoaded", function () {
-  const tableContainer = document.querySelector("#table-container");
-  const tdWidth = document.querySelector(
-    "#scroll-table > tbody > tr > td"
+function scrollTable(scrollTableId) {
+  const tableContainer = document.querySelector(scrollTableId);
+  const tdWidth = tableContainer.querySelector(
+    "table > tbody > tr > td"
   ).offsetWidth;
+
   let isMouseDown = false;
   let startX, startScrollLeft;
   let startY, startScrollTop;
@@ -11,9 +12,11 @@ window.addEventListener("DOMContentLoaded", function () {
   this.window.addEventListener("resize", function () {
     mainPageHeight = this.window.innerHeight / 2;
   });
+
   var leftArrow = document.createElement("img");
-  leftArrow.src = "./img/chevron-back-outline.svg";
+  leftArrow.src = "../custom/img/icons/chevron-back-outline.svg";
   leftArrow.width = "125";
+  leftArrow.style.cursor = "pointer";
   leftArrow.style.opacity = 0.1;
   leftArrow.style.position = "absolute";
   leftArrow.style.left = tableContainer.scrollLeft;
@@ -34,8 +37,9 @@ window.addEventListener("DOMContentLoaded", function () {
   leftArrow.addEventListener("mouseleave", function () {
     leftArrow.style.opacity = 0.1;
   });
+
   var rightArrow = document.createElement("img");
-  rightArrow.src = "./img/chevron-forward-outline.svg";
+  rightArrow.src = "../custom/img/icons/chevron-forward-outline.svg";
   rightArrow.width = "125";
   rightArrow.style.cursor = "pointer";
   rightArrow.style.opacity = 0.1;
@@ -46,6 +50,7 @@ window.addEventListener("DOMContentLoaded", function () {
     tableContainer.scrollLeft += tdWidth;
     leftArrow.style.left = tableContainer.scrollLeft;
     rightArrow.style.right = -tableContainer.scrollLeft;
+
     if (
       tableContainer.scrollWidth -
         tableContainer.offsetWidth -
@@ -62,49 +67,59 @@ window.addEventListener("DOMContentLoaded", function () {
   rightArrow.addEventListener("mouseleave", function () {
     rightArrow.style.opacity = 0.1;
   });
+
   tableContainer.appendChild(leftArrow);
   tableContainer.appendChild(rightArrow);
+
   tableContainer.addEventListener("mousedown", (e) => {
     isMouseDown = true;
     startX = e.clientX;
     // startY = e.clientY;
     startScrollLeft = tableContainer.scrollLeft;
-    // startScrollTop = container.scrollTop;
+    // startScrollTop = tableContainer.scrollTop;
   });
+
   tableContainer.addEventListener("mousemove", (e) => {
     if (isMouseDown) {
       const deltaX = e.clientX - startX;
       // const deltaY = e.clientY - startY;
       tableContainer.scrollLeft = startScrollLeft - deltaX;
-      // container.scrollTop = startScrollTop - deltaY;
+      // tableContainer.scrollTop = startScrollTop - deltaY;
+
       if (tableContainer.scrollLeft <= 0) {
         leftArrow.style.display = "none";
       } else {
         leftArrow.style.display = "block";
       }
+
       if (
         tableContainer.scrollWidth -
           tableContainer.offsetWidth -
           tableContainer.scrollLeft <=
-        0
+        5
       ) {
         rightArrow.style.display = "none";
       } else {
         rightArrow.style.display = "block";
       }
+
       leftArrow.style.left = tableContainer.scrollLeft;
       rightArrow.style.right = -tableContainer.scrollLeft;
     }
   });
+
   tableContainer.addEventListener("mouseup", () => {
     isMouseDown = false;
   });
+
   tableContainer.addEventListener("mouseleave", () => {
     isMouseDown = false;
   });
+
   const navbarHeight = document.querySelector(".navbar-brand").clientHeight;
-  const scrollTable = document.querySelector("#scroll-table");
+  const scrollTable = tableContainer.querySelector("table");
   var theader = scrollTable.querySelector("thead");
+
   this.window.addEventListener("scroll", function () {
     const tbodyRect = scrollTable
       .querySelector("tbody")
@@ -114,16 +129,18 @@ window.addEventListener("DOMContentLoaded", function () {
     if (tbodyRect.top < 80) {
       leftArrow.style.top = mainPageHeight - tableTop - 125;
       rightArrow.style.top = mainPageHeight - tableTop - 125;
+
       if (tableContainer.scrollLeft > 0) {
         leftArrow.style.display = "block";
       } else {
         leftArrow.style.display = "none";
       }
+
       if (
         tableContainer.scrollWidth -
           tableContainer.offsetWidth -
           tableContainer.scrollLeft >
-        0
+        5
       ) {
         rightArrow.style.display = "block";
       } else {
@@ -138,9 +155,10 @@ window.addEventListener("DOMContentLoaded", function () {
       leftArrow.style.display = "none";
       rightArrow.style.display = "none";
     }
+
     if (tbodyRect.bottom < mainPageHeight * 1.33 - 125) {
       leftArrow.style.display = "none";
       rightArrow.style.display = "none";
     }
   });
-});
+}

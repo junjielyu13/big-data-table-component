@@ -122,8 +122,8 @@
     s
 
     <div class="container">
-        <div class="table-container" id="table-container">
-            <table id="scroll-table" class="table is-striped statisticsTest">
+        <div class="scroll-table-container user-nonselect" id="scroll-table-container">
+            <table class="scroll-table">
                 <thead>
                     <tr>
                         <th><abbr title="Position">Pos</abbr></th>
@@ -481,5 +481,9 @@
 
 
 </body>
+
+<script>
+    window.addEventListener('DOMContentLoaded', scrollTable('#scroll-table-container'));
+</script>
 
 </html>
